@@ -1,4 +1,4 @@
-"""The enphase_envoy component."""
+"""The custom_envoy component."""
 
 from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,
@@ -12,7 +12,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.const import ENERGY_WATT_HOUR, POWER_WATT, Platform, PERCENTAGE
 
-DOMAIN = "wappz"
+DOMAIN = "custom_envoy"
 
 PLATFORMS = [Platform.SENSOR, Platform.BINARY_SENSOR]
 
