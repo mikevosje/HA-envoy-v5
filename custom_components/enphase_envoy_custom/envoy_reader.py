@@ -103,7 +103,7 @@ class EnvoyReader:  # pylint: disable=too-many-instance-attributes
         self.username = username
         self.password = password
         self.get_inverters = inverters
-        self.endpoint_type = None
+        self.endpoint_type = ENVOY_MODEL_S
         self.serial_number_last_six = None
         self.endpoint_production_json_results = None
         self.endpoint_production_v1_results = None
@@ -133,6 +133,8 @@ class EnvoyReader:  # pylint: disable=too-many-instance-attributes
                                                        cookies=self._cookies)
 
     async def _update(self):
+
+        _LOGGER.debug("getData")
         """Update the data."""
         if self.endpoint_type == ENVOY_MODEL_S:
             await self._update_from_pc_endpoint()
@@ -359,23 +361,30 @@ class EnvoyReader:  # pylint: disable=too-many-instance-attributes
         """Fetch data from the endpoint and if inverters selected default"""
         """to fetching inverter data."""
 
-        # Check if the Secure flag is set
-        if self.https_flag == "s":
-            _LOGGER.debug("Checking Token value: %s", self._token)
-            # Check if a token has already been retrieved
-            if self._token == "":
-                _LOGGER.debug("Found empty token: %s", self._token)
-                await self._getEnphaseToken()
-            else:
-                _LOGGER.debug("Token is populated: %s", self._token)
-                if self._is_enphase_token_expired(self._token):
-                    _LOGGER.debug("Found Expired token - Retrieving new token")
-                    await self._getEnphaseToken()
+        _LOGGER.debug("getData")
 
-        if not self.endpoint_type:
-            await self.detect_model()
-        else:
-            await self._update()
+        # Check if the Secure flag is set
+        # if self.username != '' and self.https_flag == "s":
+        #     _LOGGER.debug("Checking Token value: %s", self._token)
+        #     # Check if a token has already been retrieved
+        #     if self._token == "":
+        #         _LOGGER.debug("Found empty token: %s", self._token)
+        #         await self._getEnphaseToken()
+        #     else:
+        #         _LOGGER.debug("Token is populated: %s", self._token)
+        #         if self._is_enphase_token_expired(self._token):
+        #             _LOGGER.debug("Found Expired token - Retrieving new token")
+        #             await self._getEnphaseToken()
+
+        # if not self.endpoint_type:
+        #     await self.detect_model()
+        # else:
+
+        _LOGGER.debug("update start")
+
+        await self._update()
+
+        _LOGGER.debug("update done")
 
         if not self.get_inverters or not getInverters:
             return

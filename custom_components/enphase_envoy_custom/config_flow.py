@@ -22,7 +22,7 @@ _LOGGER = logging.getLogger(__name__)
 logging.getLogger("envoy_reader.envoy_reader").setLevel(logging.DEBUG)
 logging.getLogger("custom_components.enphase_envoy").setLevel(logging.DEBUG)
 
-ENVOY = "Envoy"
+ENVOY = "Envoy_custom"
 
 
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> EnvoyReader:
