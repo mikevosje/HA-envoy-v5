@@ -1,7 +1,7 @@
 {
-  "domain": "enphase_envoy",
+  "domain": "custom_envoy",
   "name": "Enphase Envoy custom v5",
-  "documentation": "https://www.home-assistant.io/integrations/enphase_envoy",
+  "documentation": "https://www.home-assistant.io/integrations/custom_envoy",
   "requirements": ["envoy-utils"],
   "codeowners": ["@mikevosje"],
   "config_flow": true,
